@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -55,161 +55,219 @@
       text-shadow: 0 0 8px rgba(0, 255, 255, 0.9);
       transform: scale(1.05);
     }
+    .chart-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+    .chart-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    .chart-container::-webkit-scrollbar-track {
+      background: rgba(0, 255, 255, 0.1);
+      border-radius: 4px;
+    }
+    .chart-container::-webkit-scrollbar-thumb {
+      background: rgba(0, 255, 255, 0.5);
+      border-radius: 4px;
+    }
+    .chart-container::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 255, 255, 0.7);
+    }
   </style>
 </head>
 <body>
-  <div id="root" class="container mx-auto p-4"></div>
+  <div id="root" class="container mx-auto p-2 sm:p-4"></div>
 
   <script type="text/babel">
-  const root = ReactDOM.createRoot(document.getElementById('root'));
-  const contributors = [
-    { contributor: "tanu91112", total: 120 },
-    { contributor: "Jahnavi-de", total: 80 },
-    { contributor: "YashSavalkar321", total: 80 },
-    { contributor: "aayishajalal", total: 280 },
-    { contributor: "Sayan-206", total: 140 },
-    { contributor: "ParthNema13", total: 100 },
-    { contributor: "Dipanita45", total: 100 },
-    { contributor: "ankit2061", total: 40 },
-    { contributor: "SK8-infi", total: 190 },
-    { contributor: "isha0325", total: 120 },
-    { contributor: "Yamuna-b", total: 80 },
-    { contributor: "aasif-10", total: 40 },
-    { contributor: "Gurashish73", total: 30 },
-    { contributor: "Priyanshiunique", total: 20 },
-    { contributor: "VEDAPRIYAMUTYAM", total: 90 },
-    { contributor: "anusuyasri", total: 60 },
-    { contributor: "Kirti8Singh", total: 40 },
-    { contributor: "Vijayashree-tech", total: 170 },
-    { contributor: "code-well0", total: 20 },
-    { contributor: "shrutisachan08", total: 30 },
-    { contributor: "bwbeas", total: 40 },
-    { contributor: "Saurabhjk15", total: 40 },
-    { contributor: "VAISHNAVISTUDENT", total: 40 },
-    { contributor: "HARSHMOHAN01", total: 40 },
-    { contributor: "renuvarma67", total: 40 },
-    { contributor: "Pixel20coder", total: 240 },
-    { contributor: "afreenaiml", total: 110 },
-    { contributor: "Sejal-collection", total: 20 },
-    { contributor: "noshmachowdary", total: 20 },
-    { contributor: "Y4shu", total: 120 },
-    { contributor: "arthavjain103", total: 40 },
-    { contributor: "10vi-3008", total: 30 },
-    { contributor: "denshaw-09", total: 20 },
-    { contributor: "JallaDharani", total: 50 }
-  ];
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    const contributors = [
+      { contributor: "tanu91112", total: 120 },
+      { contributor: "Jahnavi-de", total: 80 },
+      { contributor: "YashSavalkar321", total: 80 },
+      { contributor: "aayishajalal", total: 280 },
+      { contributor: "Sayan-206", total: 140 },
+      { contributor: "ParthNema13", total: 100 },
+      { contributor: "Dipanita45", total: 100 },
+      { contributor: "ankit2061", total: 40 },
+      { contributor: "SK8-infi", total: 190 },
+      { contributor: "isha0325", total: 120 },
+      { contributor: "Yamuna-b", total: 80 },
+      { contributor: "aasif-10", total: 40 },
+      { contributor: "Gurashish73", total: 30 },
+      { contributor: "Priyanshiunique", total: 20 },
+      { contributor: "VEDAPRIYAMUTYAM", total: 90 },
+      { contributor: "anusuyasri", total: 60 },
+      { contributor: "Kirti8Singh", total: 40 },
+      { contributor: "Vijayashree-tech", total: 170 },
+      { contributor: "code-well0", total: 20 },
+      { contributor: "shrutisachan08", total: 30 },
+      { contributor: "bwbeas", total: 40 },
+      { contributor: "Saurabhjk15", total: 40 },
+      { contributor: "VAISHNAVISTUDENT", total: 40 },
+      { contributor: "HARSHMOHAN01", total: 40 },
+      { contributor: "renuvarma67", total: 40 },
+      { contributor: "Pixel20coder", total: 240 },
+      { contributor: "afreenaiml", total: 110 },
+      { contributor: "Sejal-collection", total: 20 },
+      { contributor: "noshmachowdary", total: 20 },
+      { contributor: "Y4shu", total: 120 },
+      { contributor: "arthavjain103", total: 40 },
+      { contributor: "10vi-3008", total: 30 },
+      { contributor: "denshaw-09", total: 20 },
+      { contributor: "JallaDharani", total: 50 }
+    ];
 
-  function LeaderboardApp() {
-    const sorted = [...contributors].sort((a, b) => b.total - a.total);
-    const topContributors = sorted.slice(0, 10);
+    function LeaderboardApp() {
+      const sorted = [...contributors].sort((a, b) => b.total - a.total);
+      const topContributors = sorted.slice(0, 10);
+      const [isMobile, setIsMobile] = React.useState(window.innerWidth < 768);
 
-    return (
-      <div className="neon-card p-4 sm:p-6 rounded-lg">
-        {/* Logo + Link */}
-        <div className="flex flex-col sm:flex-row justify-center items-center mb-6 gap-4 text-center">
-          <a 
-            href="https://github.com/Saumy1905/PYQFort" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex flex-col sm:flex-row items-center"
-          >
-            <img 
-              src="PYQFort.png" 
-              alt="PYQFort Logo" 
-              className="h-16 sm:h-20 object-contain hover:opacity-90 transition-opacity"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = "https://via.placeholder.com/200x60/0a0a1a/00ffff?text=PYQFort";
-                e.target.className = "h-16 sm:h-20 object-contain border border-cyan-500 hover:opacity-90 transition-opacity";
-              }}
-            />
-            <span className="project-link mt-2 sm:mt-0 sm:ml-3 text-cyan-400 text-base sm:text-lg hover:text-cyan-300">
-              Click here to visit PYQFort
-            </span>
-          </a>
-        </div>
+      React.useEffect(() => {
+        const handleResize = () => {
+          setIsMobile(window.innerWidth < 768);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
 
-        {/* Title */}
-        <h1 className="neon-title text-xl sm:text-2xl text-center font-bold mb-4">
-          PYQFort SSOC 4.0 Contributor Scores
-        </h1>
+      const getChartWidth = () => {
+        if (isMobile) {
+          return Math.max(contributors.length * 60, window.innerWidth);
+        }
+        return "100%";
+      };
 
-        {/* Description */}
-        <p className="text-gray-300 text-sm sm:text-base mb-6 text-center">
-          This bar chart visualizes the total scores of contributors to the PYQFort project as of June 20, 2025 (10:00 PM).
-        </p>
-
-        {/* Chart with horizontal scroll */}
-        <div className="overflow-x-auto mb-10">
-          <div className="min-w-[700px] sm:min-w-full" style={{ height: '500px' }}>
-            <Recharts.ResponsiveContainer width="100%" height="100%">
-              <Recharts.BarChart
-                data={contributors}
-                margin={{ top: 20, right: 30, left: 20, bottom: 120 }}
-              >
-                <Recharts.CartesianGrid strokeDasharray="3 3" stroke="#444466" />
-                <Recharts.XAxis 
-                  dataKey="contributor" 
-                  angle={-45} 
-                  textAnchor="end" 
-                  interval={0}
-                  style={{ fontSize: 12, fill: '#00ffff', fontFamily: "'Noto Sans', sans-serif" }}
-                  height={80}
-                />
-                <Recharts.YAxis 
-                  label={{
-                    value: 'Total Score',
-                    angle: -90,
-                    position: 'insideLeft',
-                    style: { fontSize: 12, fill: '#00b3ff', fontFamily: "'Noto Sans', sans-serif" }
-                  }}
-                  style={{ fontSize: 12, fill: '#00ffff', fontFamily: "'Noto Sans', sans-serif" }}
-                />
-                <Recharts.Tooltip 
-                  contentStyle={{ backgroundColor: '#0a0a1a', borderColor: '#00ffff' }}
-                  itemStyle={{ color: '#e0e0ff' }}
-                  labelStyle={{ color: '#00ffff' }}
-                />
-                <Recharts.Legend wrapperStyle={{ color: '#e0e0ff' }} />
-                <Recharts.Bar dataKey="total" className="bar-style" />
-              </Recharts.BarChart>
-            </Recharts.ResponsiveContainer>
+      return (
+        <div className="neon-card p-3 sm:p-6 rounded-lg">
+          <div className="flex flex-col sm:flex-row justify-center items-center mb-4 gap-2 sm:gap-4">
+            <a 
+              href="https://github.com/Saumy1905/PYQFort" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex flex-col sm:flex-row items-center text-center sm:text-left"
+            >
+              <img 
+                src="PYQFort.png" 
+                alt="PYQFort Logo" 
+                className="h-16 sm:h-20 object-contain hover:opacity-90 transition-opacity mb-2 sm:mb-0"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "https://via.placeholder.com/200x60/0a0a1a/00ffff?text=PYQFort";
+                  e.target.className = "h-16 sm:h-20 object-contain border border-cyan-500 hover:opacity-90 transition-opacity mb-2 sm:mb-0";
+                }}
+              />
+              <span className="project-link sm:ml-3 text-cyan-400 text-base sm:text-lg hover:text-cyan-300">
+                Click here to visit PYQFort
+              </span>
+            </a>
           </div>
-        </div>
 
-        {/* Top Contributor */}
-        <div className="highlight-box p-4 rounded-lg mb-6">
-          <h2 className="highlight-text text-base sm:text-lg font-semibold mb-3">#1 Contributor</h2>
-          <p className="text-gray-300 text-sm sm:text-base">
-            The top contributor, <strong className="text-cyan-400">{topContributors[0].contributor}</strong>, achieved an impressive score of <strong className="text-purple-400">{topContributors[0].total}</strong> points!
+          <h1 className="neon-title text-xl sm:text-2xl text-center font-bold mb-4">
+            PYQFort SSOC 4.0 Contributor Scores
+          </h1>
+          <p className="text-gray-300 mb-4 text-sm sm:text-base px-2 sm:px-0">
+           This bar chart visualizes the total scores of contributors to the PYQFort project as of June 20, 2025 (10:00 PM). 
           </p>
-        </div>
+          {isMobile && (
+            <div className="text-center mb-2">
+              <p className="text-cyan-400 text-xs">
+                👈 Scroll horizontally to view all contributors 👉
+              </p>
+            </div>
+          )}
 
-        {/* Top 10 List */}
-        <div className="highlight-box p-4 rounded-lg">
-          <h2 className="highlight-text text-base sm:text-lg font-semibold mb-3">Top 10 Contributors</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <ol className="list-decimal list-inside space-y-2">
-              {topContributors.slice(0, 5).map((c, i) => (
-                <li key={i} className="text-gray-300 text-sm sm:text-base">
-                  <span className="text-cyan-400 font-medium">{c.contributor}</span> – <span className="text-purple-400">{c.total} pts</span>
-                </li>
-              ))}
-            </ol>
-            <ol className="list-decimal list-inside space-y-2" start={6}>
-              {topContributors.slice(5, 10).map((c, i) => (
-                <li key={i + 5} className="text-gray-300 text-sm sm:text-base">
-                  <span className="text-cyan-400 font-medium">{c.contributor}</span> – <span className="text-purple-400">{c.total} pts</span>
-                </li>
-              ))}
-            </ol>
+          <div className="chart-container mb-6 sm:mb-8" style={{ height: isMobile ? '400px' : '600px' }}>
+            <div style={{ width: getChartWidth(), height: '100%' }}>
+              <Recharts.ResponsiveContainer width="100%" height="100%">
+                <Recharts.BarChart
+                  data={contributors}
+                  margin={{ 
+                    top: 20, 
+                    right: isMobile ? 10 : 30, 
+                    left: isMobile ? 10 : 20, 
+                    bottom: isMobile ? 100 : 120 
+                  }}
+                >
+                  <Recharts.CartesianGrid strokeDasharray="3 3" stroke="#444466" />
+                  <Recharts.XAxis 
+                    dataKey="contributor" 
+                    angle={-45} 
+                    textAnchor="end" 
+                    interval={0}
+                    style={{ 
+                      fontSize: isMobile ? 10 : 12, 
+                      fill: '#00ffff', 
+                      fontFamily: "'Noto Sans', sans-serif" 
+                    }}
+                    height={isMobile ? 80 : 100}
+                  />
+                  <Recharts.YAxis 
+                    label={{
+                      value: 'Total Score',
+                      angle: -90,
+                      position: 'insideLeft',
+                      style: { 
+                        fontSize: isMobile ? 10 : 12, 
+                        fill: '#00b3ff', 
+                        fontFamily: "'Noto Sans', sans-serif" 
+                      }
+                    }}
+                    style={{ 
+                      fontSize: isMobile ? 10 : 12, 
+                      fill: '#00ffff', 
+                      fontFamily: "'Noto Sans', sans-serif" 
+                    }}
+                  />
+                  <Recharts.Tooltip 
+                    contentStyle={{ 
+                      backgroundColor: '#0a0a1a', 
+                      borderColor: '#00ffff',
+                      fontSize: isMobile ? '12px' : '14px'
+                    }}
+                    itemStyle={{ color: '#e0e0ff' }}
+                    labelStyle={{ color: '#00ffff' }}
+                  />
+                  <Recharts.Legend wrapperStyle={{ 
+                    color: '#e0e0ff',
+                    fontSize: isMobile ? '12px' : '14px'
+                  }} />
+                  <Recharts.Bar dataKey="total" className="bar-style" />
+                </Recharts.BarChart>
+              </Recharts.ResponsiveContainer>
+            </div>
+          </div>
+
+          <div className="highlight-box p-3 sm:p-4 rounded-lg mb-4 sm:mb-6">
+            <h2 className="highlight-text text-base sm:text-lg font-semibold mb-3">#1 Contributor</h2>
+            <p className="text-gray-300 text-sm sm:text-base">
+              The top contributor, <strong className="text-cyan-400">{topContributors[0].contributor}</strong>, achieved an impressive score of <strong className="text-purple-400">{topContributors[0].total}</strong> points!
+            </p>
+          </div>
+
+          <div className="highlight-box p-3 sm:p-4 rounded-lg">
+            <h2 className="highlight-text text-base sm:text-lg font-semibold mb-3">Top 10 Contributors</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              <ol className="list-decimal list-inside space-y-2">
+                {topContributors.slice(0, 5).map((c, i) => (
+                  <li key={i} className="text-gray-300 text-sm sm:text-base">
+                    <span className="text-cyan-400 font-medium break-all">{c.contributor}</span> – <span className="text-purple-400">{c.total} pts</span>
+                  </li>
+                ))}
+              </ol>
+              <ol className="list-decimal list-inside space-y-2" start={6}>
+                {topContributors.slice(5, 10).map((c, i) => (
+                  <li key={i + 5} className="text-gray-300 text-sm sm:text-base">
+                    <span className="text-cyan-400 font-medium break-all">{c.contributor}</span> – <span className="text-purple-400">{c.total} pts</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </div>
-      </div>
-    );
-  }
+      );
+    }
 
-  root.render(<LeaderboardApp />);
-</script>
+    root.render(<LeaderboardApp />);
+  </script>
 </body>
 </html>
