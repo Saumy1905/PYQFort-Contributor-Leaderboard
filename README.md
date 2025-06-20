@@ -1,1 +1,0 @@
-# PYQFort-Contributor-Leaderboard
